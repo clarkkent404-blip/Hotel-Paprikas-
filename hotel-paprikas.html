@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Paprikas — Hanamkonda's Finest</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #B8832A;
+  --gold-bright: #D4A940;
+  --gold-pale: #FDF3DC;
+  --body-text: #1E1408;
+  --sub-text: #3D2A10;
+  --muted: #5A4020;
+  --cream: #FAF6EE;
+  --white: #FFFFFF;
+  --radius: 12px;
+  --radius-lg: 20px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--body-text);
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: #100C04;
+  border-bottom: 2px solid var(--gold-bright);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--gold-bright); text-decoration: none;
+}
+.nav-logo span { color: #F5E0A0; font-weight: 400; font-style: italic; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: #EEE0C0; text-decoration: none;
+  font-size: 0.88rem; font-weight: 500;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold-bright); }
+.nav-cta {
+  background: var(--gold-bright) !important;
+  color: #100C04 !important;
+  padding: 0.45rem 1.2rem !important;
+  border-radius: 6px; font-weight: 700 !important;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(8,5,1,0.3) 0%,
+      rgba(8,5,1,0.05) 30%,
+      rgba(8,5,1,0.72) 68%,
+      rgba(8,5,1,0.97) 100%),
+    url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAF-nPCdRI6dNLDYFbRMXBucl3qdViWHhJ-DoLBffryMHeCCdbElGPPa3X2cOvtVGzt8WyKgnWY7896moZt1tj_VZwNH_kocRPW_slQ7Cx7m6eEDHauc4zmUuQJLLh2At6_GkvQuZJSHm_uU=s1200-w1200-h900-n-k-no') center/cover no-repeat;
+  animation: slowzoom 10s ease-out forwards;
+}
+@keyframes slowzoom { from { transform: scale(1.07); } to { transform: scale(1.0); } }
+
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 5rem 3rem 3.5rem; max-width: 800px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(212,169,64,0.2);
+  border: 1.5px solid var(--gold-bright);
+  color: #F5DC80;
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.4rem 1rem; border-radius: 50px;
+  margin-bottom: 1.4rem;
+  animation: fadein 1s ease both;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  font-weight: 700; color: #FFFFFF;
+  line-height: 1.13; margin-bottom: 1.2rem;
+  animation: slidein 1s ease 0.2s both;
+}
+.hero h1 em { color: #F0C840; font-style: italic; }
+.hero-sub {
+  font-size: 1.12rem; color: #EAD8B8;
+  max-width: 530px; margin-bottom: 2.2rem;
+  font-weight: 400;
+  animation: slidein 1s ease 0.4s both;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: slidein 1s ease 0.6s both; }
+
+.btn-primary {
+  background: var(--gold-bright); color: #100C04;
+  padding: 0.85rem 2rem; border-radius: 8px;
+  text-decoration: none; font-weight: 700; font-size: 0.95rem;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-primary:hover { background: #C8961A; transform: translateY(-2px); }
+
+.btn-outline {
+  border: 2px solid #F0C840; color: #F0C840;
+  padding: 0.85rem 2rem; border-radius: 8px;
+  text-decoration: none; font-weight: 600; font-size: 0.95rem;
+  transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-outline:hover { background: rgba(240,200,64,0.14); }
+
+.hero-stats {
+  position: relative; z-index: 2; display: flex;
+  background: #100C04;
+  border-top: 2px solid var(--gold-bright);
+  animation: fadein 1s ease 0.8s both;
+}
+.stat-item {
+  flex: 1; padding: 1.4rem 1.5rem; text-align: center;
+  border-right: 1px solid rgba(212,169,64,0.3);
+}
+.stat-item:last-child { border-right: none; }
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 700; color: #F0C840;
+}
+.stat-label {
+  font-size: 0.76rem; letter-spacing: 0.07em;
+  text-transform: uppercase; color: #C8B080;
+  font-weight: 500; margin-top: 0.2rem;
+}
+
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slidein { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+/* SECTIONS */
+section { padding: 6rem 3rem; }
+
+.section-label {
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.5rem; display: block;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700; line-height: 1.2;
+  color: var(--body-text); margin-bottom: 1rem;
+}
+.section-title em { color: var(--gold); font-style: italic; }
+.section-desc {
+  font-size: 1rem; color: var(--sub-text);
+  max-width: 560px; font-weight: 400; line-height: 1.85;
+}
+.gold-divider {
+  width: 50px; height: 3px;
+  background: var(--gold-bright); border-radius: 2px;
+  margin: 0.9rem 0 1.8rem;
+}
+
+/* ABOUT */
+.about-section { background: #FFFFFF; }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center;
+  max-width: 1100px; margin: 0 auto;
+}
+.about-images { position: relative; height: 480px; }
+.about-img-main {
+  position: absolute; top: 0; left: 0;
+  width: 72%; height: 78%; object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 55px rgba(26,18,8,0.2);
+}
+.about-img-accent {
+  position: absolute; bottom: 0; right: 0;
+  width: 52%; height: 50%; object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 5px solid #FFFFFF;
+  box-shadow: 0 10px 35px rgba(26,18,8,0.18);
+}
+.gold-corner {
+  position: absolute; top: -14px; left: -14px;
+  width: 48px; height: 48px;
+  background: var(--gold-bright); border-radius: 8px; z-index: -1;
+}
+.tag-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.8rem; }
+.tag {
+  background: var(--gold-pale);
+  color: #4A2E08;
+  border: 1.5px solid #D4A94055;
+  font-size: 0.84rem; font-weight: 600;
+  padding: 0.38rem 0.9rem; border-radius: 50px;
+}
+
+/* GALLERY */
+.gallery-section { background: var(--cream); }
+.gallery-header {
+  max-width: 1100px; margin: 0 auto 2.5rem;
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 260px 260px;
+  gap: 14px; max-width: 1100px; margin: 0 auto;
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.gallery-item { overflow: hidden; position: relative; }
+.gallery-item:first-child { grid-row: 1 / 3; }
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease; display: block;
+}
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(14,9,2,0.55) 100%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+
+/* FEATURES */
+.features-section { background: #100C04; }
+.features-section .section-label { color: #F0C840; }
+.features-section .section-title { color: #FFFFFF; }
+.features-section .section-title em { color: #F0C840; }
+.features-section .section-desc { color: #C8A860; max-width: 560px; }
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.4rem; max-width: 1100px; margin: 3rem auto 0;
+}
+.feature-card {
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(212,169,64,0.35);
+  border-radius: var(--radius); padding: 1.8rem 1.5rem;
+  transition: background 0.25s, border-color 0.25s;
+}
+.feature-card:hover {
+  background: rgba(212,169,64,0.1);
+  border-color: var(--gold-bright);
+}
+.feature-icon { font-size: 2rem; margin-bottom: 0.9rem; display: block; }
+.feature-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.08rem; font-weight: 700;
+  color: #FFFFFF; margin-bottom: 0.5rem;
+}
+.feature-desc { font-size: 0.9rem; color: #C0A870; line-height: 1.75; }
+
+/* REVIEWS */
+.reviews-section { background: #FFFFFF; }
+.rating-hero {
+  display: flex; align-items: center; gap: 3rem;
+  background: var(--gold-pale);
+  border: 2px solid var(--gold-bright);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 3rem; margin-bottom: 3rem;
+  max-width: 1100px; margin-inline: auto; margin-bottom: 3rem;
+}
+.rating-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 5.5rem; font-weight: 700;
+  color: var(--gold); line-height: 1;
+}
+.rating-stars { font-size: 1.6rem; color: var(--gold-bright); letter-spacing: 2px; }
+.rating-label { font-size: 0.92rem; color: var(--sub-text); margin-top: 0.4rem; font-weight: 600; }
+.rating-breakdown { margin-left: auto; min-width: 220px; }
+.bar-row { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.5rem; }
+.bar-label { font-size: 0.82rem; color: var(--sub-text); min-width: 35px; font-weight: 700; }
+.bar-track { flex: 1; height: 7px; background: #DDD0B0; border-radius: 10px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--gold-bright); border-radius: 10px; }
+.bar-count { font-size: 0.8rem; color: var(--sub-text); min-width: 22px; text-align: right; font-weight: 700; }
+
+.reviews-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+}
+.review-card {
+  background: var(--gold-pale);
+  border: 1.5px solid #D4A94055;
+  border-radius: var(--radius); padding: 1.7rem;
+  transition: box-shadow 0.25s, border-color 0.25s;
+}
+.review-card:hover {
+  box-shadow: 0 8px 28px rgba(180,130,40,0.18);
+  border-color: var(--gold-bright);
+}
+.review-stars { color: var(--gold-bright); font-size: 1rem; margin-bottom: 0.9rem; letter-spacing: 2px; }
+.review-text {
+  font-size: 0.96rem; color: var(--body-text);
+  line-height: 1.82; margin-bottom: 1rem;
+  font-style: italic; font-weight: 400;
+}
+.reviewer { font-size: 0.84rem; font-weight: 700; color: var(--muted); }
+
+/* LOCATION */
+.location-section { background: var(--cream); }
+.location-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start;
+  max-width: 1100px; margin: 0 auto;
+}
+.info-row {
+  display: flex; gap: 1rem; align-items: flex-start;
+  margin-bottom: 1.5rem; padding-bottom: 1.5rem;
+  border-bottom: 1.5px solid #D4C8A0;
+}
+.info-row:last-of-type { border-bottom: none; }
+.info-icon {
+  width: 42px; height: 42px; min-width: 42px;
+  background: var(--gold-pale);
+  border: 1.5px solid var(--gold-bright);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+}
+.info-title {
+  font-size: 0.75rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted);
+  font-weight: 700; margin-bottom: 0.25rem;
+}
+.info-val { font-size: 0.96rem; color: var(--body-text); font-weight: 500; }
+.map-frame {
+  border-radius: var(--radius-lg); overflow: hidden;
+  height: 360px; border: 2px solid var(--gold-bright);
+  box-shadow: 0 12px 40px rgba(26,18,8,0.12);
+}
+.map-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+
+/* CTA */
+.cta-section {
+  background: #100C04; text-align: center;
+  padding: 7rem 3rem; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(212,169,64,0.1) 0%, transparent 70%);
+}
+.cta-section .section-label { color: #F0C840; }
+.cta-section .section-title { color: #FFFFFF; }
+.cta-section .section-title em { color: #F0C840; }
+.cta-section .section-desc { color: #C8A860; max-width: 460px; margin-inline: auto; margin-bottom: 2.5rem; }
+.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+/* FOOTER */
+footer {
+  background: #080502;
+  padding: 3rem 3rem 2rem;
+  border-top: 2px solid var(--gold-bright);
+}
+.footer-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 2rem; flex-wrap: wrap;
+  margin-bottom: 2rem; padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(212,169,64,0.2);
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700;
+  color: var(--gold-bright); margin-bottom: 0.4rem;
+}
+.footer-tagline { font-size: 0.86rem; color: #A89060; font-weight: 400; }
+.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-links a {
+  color: #C8B080; text-decoration: none;
+  font-size: 0.88rem; font-weight: 500;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold-bright); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0.8rem;
+}
+.footer-copy { font-size: 0.8rem; color: #706050; }
+.phone-chip {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--gold-bright); color: #100C04;
+  text-decoration: none; font-weight: 700; font-size: 0.9rem;
+  padding: 0.55rem 1.2rem; border-radius: 50px;
+  transition: background 0.2s;
+}
+.phone-chip:hover { background: #C8961A; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.4rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.4rem; }
+  .about-grid, .location-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-images { height: 300px; }
+  .hero-content { padding: 4rem 1.5rem 2.5rem; }
+  .hero-stats { flex-wrap: wrap; }
+  .stat-item { min-width: 50%; }
+  .rating-hero { flex-direction: column; padding: 2rem 1.5rem; }
+  .rating-breakdown { margin-left: 0; width: 100%; }
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 200px 200px;
+  }
+  .gallery-item:first-child { grid-column: 1 / 3; grid-row: auto; }
+  footer { padding: 2.5rem 1.4rem; }
+  .footer-top { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Paprikas <span>Hotel</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#features">Amenities</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="tel:+91XXXXXXXXXX" class="nav-cta">📞 Call Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO — uses your first image as background -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      ★ &nbsp;Rated 4.9 / 5 &nbsp;·&nbsp; Google's Top Rated Hotel in Hanamkonda
+    </div>
+    <h1>Where Every Meal<br>Becomes a <em>Memory</em></h1>
+    <p class="hero-sub">Newly reopened with a stunning new look, amazing food, and warm staff — right in the heart of Hanamkonda, Warangal.</p>
+    <div class="hero-actions">
+      <a href="#location" class="btn-primary">📍 Find Us</a>
+      <a href="#reviews" class="btn-outline">★ See Reviews</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">4.9</div>
+      <div class="stat-label">Google Rating</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">31+</div>
+      <div class="stat-label">Happy Reviews</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Fresh Ambience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">New</div>
+      <div class="stat-label">Newly Reopened</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT — image 1 (main) + image 2 (accent) -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div class="about-images">
+      <div class="gold-corner"></div>
+      <img
+        class="about-img-main"
+        src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF-nPCdRI6dNLDYFbRMXBucl3qdViWHhJ-DoLBffryMHeCCdbElGPPa3X2cOvtVGzt8WyKgnWY7896moZt1tj_VZwNH_kocRPW_slQ7Cx7m6eEDHauc4zmUuQJLLh2At6_GkvQuZJSHm_uU=s1200-w1200-h900-n-k-no"
+        alt="Hotel Paprikas Dining Hall"
+      />
+      <img
+        class="about-img-accent"
+        src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF2OnVZn50a7K1_ZipC0pI9jGIf4If5c-W7xvQCWtHRKAwmsmnaPib0suA7_tQOYoW1equKZrZjtoYFho4CqtfHArqLa8iCeediAWyxQHKbaqOfpABizP9C3-14GkA_CD0eZBXcYeAAT6E=s800-w600-h800-n-k-no"
+        alt="Hotel Paprikas Food"
+      />
+    </div>
+    <div>
+      <span class="section-label">Our Story</span>
+      <h2 class="section-title">Back &amp; Better<br>Than <em>Ever Before</em></h2>
+      <div class="gold-divider"></div>
+      <p class="section-desc">Hotel Paprikas is back — completely refreshed with a beautiful new look that makes every visit feel special. Whether you are coming alone, with friends, or with your whole family, we have something for everyone.</p>
+      <p class="section-desc" style="margin-top:1rem;">Our kitchen is run with passion. Our service is warm and quick. And every guest leaves with a smile.</p>
+      <div class="tag-row">
+        <span class="tag">🍛 Amazing Food</span>
+        <span class="tag">🌿 Fresh Ingredients</span>
+        <span class="tag">✨ New Look</span>
+        <span class="tag">😊 Friendly Staff</span>
+        <span class="tag">👨‍👩‍👧 Family Friendly</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY — all 3 images used across 5 slots -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <div>
+      <span class="section-label">Our Space</span>
+      <h2 class="section-title">See It <em>Yourself</em></h2>
+    </div>
+    <p style="color:var(--sub-text);font-size:0.92rem;font-weight:600;">Hover to explore</p>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img
+        src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF-nPCdRI6dNLDYFbRMXBucl3qdViWHhJ-DoLBffryMHeCCdbElGPPa3X2cOvtVGzt8WyKgnWY7896moZt1tj_VZwNH_kocRPW_slQ7Cx7m6eEDHauc4zmUuQJLLh2At6_GkvQuZJSHm_uU=s1200-w1200-h900-n-k-no"
+        alt="Hotel Paprikas Main Hall"
+      />
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img
+        src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF2OnVZn50a7K1_ZipC0pI9jGIf4If5c-W7xvQCWtHRKAwmsmnaPib0suA7_tQOYoW1equKZrZjtoYFho4CqtfHArqLa8iCeediAWyxQHKbaqOfpABizP9C3-14GkA_CD0eZBXcYeAAT6E=s800-w600-h800-n-k-no"
+        alt="Hotel Paprikas Food"
+      />
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img
+        src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGHYURI0SrgskKyvCZuWRm4Sp3DSlSffdNSfEXyPr-PV5x3YWAP4VmTXN2zPR_0gFPLNZ7DIwXEkqhxDgl7jdWMSlaM1aDnfI1S98rvT6O0tLNyr-S8XQSAngq_TFXE-GG-q1i9rQG1l00Y=s1200-w1200-h900-n-k-no"
+        alt="Hotel Paprikas Dining"
+      />
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img
+        src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGHYURI0SrgskKyvCZuWRm4Sp3DSlSffdNSfEXyPr-PV5x3YWAP4VmTXN2zPR_0gFPLNZ7DIwXEkqhxDgl7jdWMSlaM1aDnfI1S98rvT6O0tLNyr-S8XQSAngq_TFXE-GG-q1i9rQG1l00Y=s1200-w1200-h900-n-k-no"
+        alt="Hotel Paprikas Interior"
+      />
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img
+        src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF2OnVZn50a7K1_ZipC0pI9jGIf4If5c-W7xvQCWtHRKAwmsmnaPib0suA7_tQOYoW1equKZrZjtoYFho4CqtfHArqLa8iCeediAWyxQHKbaqOfpABizP9C3-14GkA_CD0eZBXcYeAAT6E=s800-w600-h800-n-k-no"
+        alt="Hotel Paprikas Cuisine"
+      />
+      <div class="gallery-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="section-label">Why Choose Us</span>
+    <h2 class="section-title">Everything You <em>Need</em></h2>
+    <p class="section-desc">Simple things, done with heart. We make every visit worth coming back for.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🍛</span>
+        <div class="feature-title">Delicious Food</div>
+        <p class="feature-desc">Freshly cooked meals with bold flavours — from spicy favourites to mild comfort dishes loved by everyone.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✨</span>
+        <div class="feature-title">New Ambience</div>
+        <p class="feature-desc">Beautiful, clean, modern interiors — redesigned to feel warm and welcoming the moment you walk in.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🤝</span>
+        <div class="feature-title">Excellent Service</div>
+        <p class="feature-desc">Our staff is friendly, quick, and always ready to help — you will feel valued every single visit.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📍</span>
+        <div class="feature-title">Easy to Find</div>
+        <p class="feature-desc">On Hunter Road, next to Indian Oil petrol bunk, Shyampet — easy to reach from all parts of Hanamkonda.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">👨‍👩‍👧</span>
+        <div class="feature-title">Family Friendly</div>
+        <p class="feature-desc">Kids, elders, couples, and groups — everyone is welcome and comfortable at Hotel Paprikas.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⭐</span>
+        <div class="feature-title">Top Google Rating</div>
+        <p class="feature-desc">4.9 stars from 31 real Google reviews. Our guests love us — and they keep coming back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="section-label">What People Say</span>
+    <h2 class="section-title">Loved by Every <em>Guest</em></h2>
+    <div class="gold-divider"></div>
+
+    <div class="rating-hero">
+      <div>
+        <div class="rating-number">4.9</div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-label">Based on 31 verified Google Reviews</div>
+      </div>
+      <div class="rating-breakdown">
+        <p style="font-size:0.85rem;color:var(--sub-text);margin-bottom:1rem;font-weight:700;">Rating Breakdown</p>
+        <div class="bar-row"><span class="bar-label">5 ★</span><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div><span class="bar-count">28</span></div>
+        <div class="bar-row"><span class="bar-label">4 ★</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="bar-count">2</span></div>
+        <div class="bar-row"><span class="bar-label">3 ★</span><div class="bar-track"><div class="bar-fill" style="width:3%"></div></div><span class="bar-count">1</span></div>
+        <div class="bar-row"><span class="bar-label">2 ★</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span class="bar-count">0</span></div>
+        <div class="bar-row"><span class="bar-label">1 ★</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span class="bar-count">0</span></div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Overall the atmosphere is good, food taste is also good and the staff are very welcoming. Highly recommend to everyone!"</p>
+        <div class="reviewer">— Verified Google Review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Good service and taste. One of the best places to eat in Hanamkonda. Will definitely come back again soon."</p>
+        <div class="reviewer">— Verified Google Review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Happy to know that Hotel Paprikas has reopened with a new and good ambience. The food is absolutely amazing!"</p>
+        <div class="reviewer">— Verified Google Review</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="https://www.google.com/search?q=hotel+paprikas+warangal" target="_blank" class="btn-primary" style="display:inline-flex;">
+        Read All Reviews on Google →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="section-label">Find Us</span>
+    <h2 class="section-title">Come <em>Visit Us</em> Today</h2>
+    <div class="gold-divider"></div>
+    <div class="location-grid">
+      <div>
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-title">Full Address</div>
+            <div class="info-val">Road No 3, 23-6-80, Hunter Road, beside Indian Oil Petrol Bunk, Shyampet, Hanamkonda, Telangana — 506001</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="info-title">Phone / Booking</div>
+            <div class="info-val">
+              <a href="tel:+91XXXXXXXXXX" style="color:var(--gold);text-decoration:none;font-weight:700;">Contact us for rates &amp; availability</a>
+            </div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">⏰</div>
+          <div>
+            <div class="info-title">Hours</div>
+            <div class="info-val">Open Daily — Call us for exact timings</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🗺️</div>
+          <div>
+            <div class="info-title">Landmark</div>
+            <div class="info-val">Beside Indian Oil Petrol Bunk, Hunter Road, Shyampet</div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="https://maps.google.com/maps?q=Hotel+Paprikas+Hanamkonda+Warangal" target="_blank" class="btn-primary">🗺️ Open in Google Maps</a>
+          <a href="tel:+91XXXXXXXXXX" style="border:2px solid var(--gold-bright);color:var(--body-text);padding:0.85rem 2rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.95rem;display:inline-flex;align-items:center;gap:0.5rem;transition:background 0.2s;" onmouseover="this.style.background='#FDF3DC'" onmouseout="this.style.background='transparent'">📞 Call for Booking</a>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3795.0!2d79.5583!3d18.0002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a334538f5c4af83%3A0x34de25f6e79a1060!2sHotel%20Paprikas!5e0!3m2!1sen!2sin!4v1680000000000"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Hotel Paprikas on Google Maps"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div style="position:relative;z-index:1;">
+    <span class="section-label">Ready to Visit?</span>
+    <h2 class="section-title" style="margin-bottom:1rem;">Your Table is <em>Waiting</em></h2>
+    <p class="section-desc">Come experience the new Hotel Paprikas. Great food, great people, and an atmosphere you will love.</p>
+    <div class="cta-actions">
+      <a href="https://maps.google.com/maps?q=Hotel+Paprikas+Hanamkonda" target="_blank" class="btn-primary">📍 Get Directions</a>
+      <a href="https://www.google.com/search?q=hotel+paprikas+warangal" target="_blank" class="btn-outline">★ Read Reviews</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Hotel Paprikas</div>
+      <div class="footer-tagline">Hanamkonda's Most Loved Hotel &amp; Restaurant</div>
+      <div style="margin-top:1rem;">
+        <span style="color:var(--gold-bright);font-size:1.1rem;letter-spacing:2px;">★★★★★</span>
+        <span style="color:#A89060;font-size:0.85rem;margin-left:0.6rem;font-weight:500;">4.9 on Google · 31 Reviews</span>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#features">Amenities</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#location">Location</a>
+    </div>
+    <a href="tel:+91XXXXXXXXXX" class="phone-chip">📞 Call for Booking</a>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Hotel Paprikas, Hanamkonda. All rights reserved.</div>
+    <div class="footer-copy">Road No 3, Hunter Road, Shyampet, Hanamkonda, Telangana 506001</div>
+  </div>
+</footer>
+
+</body>
+</html>
