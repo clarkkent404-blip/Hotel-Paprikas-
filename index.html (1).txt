@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Paprikas</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f4f4f4;
+}
+header {
+background: #333;
+color: #fff;
+padding: 10px 20px;
+position: relative;
+}
+.logo {
+font-size: 24px;
+font-weight: bold;
+}
+nav {
+display: none;
+flex-direction: column;
+background-color: #333;
+position: absolute;
+top: 50px;
+right: 0;
+width: 200px;
+z-index: 10;
+}
+nav a {
+color: white;
+padding: 10px;
+text-decoration: none;
+border-top: 1px solid #444;
+}
+nav a:hover {
+background: #444;
+}
+.hamburger {
+cursor: pointer;
+width: 30px;
+height: 30px;
+position: absolute;
+right: 20px;
+top: 10px;
+}
+.hamburger div {
+width: 100%;
+height: 4px;
+background: #fff;
+margin: 5px 0;
+transition: 0.4s;
+}
+main {
+padding: 20px;
+}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Hotel Paprikas</div>
+<div class="hamburger" onclick="toggleMenu()">
+<div></div>
+<div></div>
+<div></div>
+</div>
+<nav id="nav-menu">
+<a href="#">Home</a>
+<a href="#">About</a>
+<a href="#">Services</a>
+<a href="#">Contact</a>
+</nav>
+</header>
+<main>
+<h1>Welcome to Hotel Paprikas</h1>
+<p>Your comfort is our priority. Enjoy your stay!</p>
+</main>
+<script>
+function toggleMenu() {
+const nav = document.getElementById('nav-menu');
+nav.style.display = (nav.style.display === 'flex') ? 'none' : 'flex';
+nav.style.flexDirection = 'column';
+}
+</script>
+</body>
+</html>
