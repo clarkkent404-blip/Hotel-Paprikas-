@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hotel Paprikas - 4.9★ rated premium hotel in Hanamkonda with fresh food, comfortable rooms, and exceptional service.">
+<meta name="keywords" content="Hotel Paprikas, Hanamkonda, Telangana, accommodation, restaurant">
+<meta property="og:title" content="Hotel Paprikas - Hanamkonda's Finest">
+<meta property="og:description" content="4.9★ Premium hotel with fresh food, comfortable rooms, 24/7 service">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Hotel Paprikas - Hanamkonda's Finest Hotel | 4.9★ Rated</title>
+<style>
+:root {
+--paprika: #B5281A;
+--gold: #C9943A;
+--cream: #FDF6EC;
+--charcoal: #1C1410;
+--white: #FFFFFF;
+--nav-h: 70px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+
+body {
+font-family: 'DM Sans', sans-serif;
+background: var(--cream);
+color: var(--charcoal);
+line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+
+/* NAVIGATION */
+nav {
+position: fixed;
+top: 0;
+width: 100%;
+height: var(--nav-h);
+background: rgba(28, 20, 16, 0.92);
+backdrop-filter: blur(12px);
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 5%;
+z-index: 1000;
+border-bottom: 1px solid rgba(201, 148, 58, 0.3);
+}
+
+.nav-logo { font-size: 1.5rem; color: var(--gold); font-weight: 700; letter-spacing: 1px; }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+
+.nav-links a {
+color: rgba(255, 255, 255, 0.8);
+text-decoration: none;
+font-size: 0.85rem;
+font-weight: 500;
+text-transform: uppercase;
+transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+background: var(--paprika);
+color: var(--white);
+border: none;
+padding: 10px 22px;
+border-radius: 4px;
+cursor: pointer;
+font-weight: 500;
+transition: all 0.3s;
+text-decoration: none;
+}
+
+.nav-cta:hover { background: #861E11; transform: translateY(-2px); }
+
+.hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
+
+.hamburger span { width: 24px; height: 3px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+/* SECTIONS */
+section { padding: 80px 5%; }
+
+#hero {
+min-height: 100vh;
+padding-top: var(--nav-h);
+display: grid;
+grid-template-columns: 1fr 1fr;
+align-items: center;
+background: var(--charcoal);
+position: relative;
+}
+
+.hero-text { padding: 6% 8%; animation: fadeUp 0.9s ease-out; }
+
+.hero-title { font-size: clamp(2.8rem, 5vw, 4.5rem); color: var(--white); line-height: 1.1; margin-bottom: 1rem; }
+
+.hero-title em { color: var(--gold); font-style: italic; }
+
+.hero-subtitle { color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem; max-width: 380px; }
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn-primary, .btn-outline {
+padding: 14px 32px;
+border-radius: 5px;
+font-weight: 600;
+font-size: 0.9rem;
+border: 2px solid;
+cursor: pointer;
+transition: all 0.3s;
+text-decoration: none;
+display: inline-block;
+}
+
+.btn-primary { background: var(--paprika); color: var(--white); border-color: var(--paprika); }
+
+.btn-primary:hover { background: #861E11; transform: translateY(-3px); }
+
+.btn-outline { background: transparent; color: var(--white); border-color: rgba(255, 255, 255, 0.35); }
+
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-images { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; }
+
+.hero-img-main { width: 75%; height: 68vh; object-fit: cover; border-radius: 12px 0 0 12px; box-shadow: -20px 20px 60px rgba(0, 0, 0, 0.5); }
+
+/* GALLERY */
+#gallery { background: #F5EDE0; }
+
+.gallery-grid {
+display: grid;
+grid-template-columns: 1.5fr 1fr 1fr;
+grid-template-rows: 260px 260px;
+gap: 12px;
+margin-top: 2rem;
+}
+
+.gallery-item { overflow: hidden; border-radius: 8px; cursor: pointer; }
+
+.gallery-item:first-child { grid-row: 1 / 3; }
+
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+
+.gallery-item:hover img { transform: scale(1.08); }
+
+/* REVIEWS */
+#reviews { background: var(--charcoal); }
+
+#reviews h2 { color: var(--white); }
+
+.reviews-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+margin-top: 2rem;
+}
+
+.review-card {
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 10px;
+padding: 1.8rem;
+transition: all 0.3s;
+}
+
+.review-card:hover { border-color: rgba(201, 148, 58, 0.4); transform: translateY(-8px); }
+
+.review-card p { color: rgba(255, 255, 255, 0.8); font-style: italic; }
+
+/* AMENITIES */
+#amenities { background: var(--cream); }
+
+.amenities-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1.2rem;
+margin-top: 2rem;
+}
+
+.amenity-card {
+background: var(--white);
+border-radius: 10px;
+padding: 1.8rem;
+text-align: center;
+box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+transition: all 0.3s;
+}
+
+.amenity-card:hover { box-shadow: 0 6px 30px rgba(181, 40, 26, 0.15); transform: translateY(-6px); }
+
+.amenity-card > div { font-size: 2rem; margin-bottom: 1rem; }
+
+/* LOCATION */
+#location { background: var(--white); }
+
+.location-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 5%;
+margin-top: 2rem;
+align-items: center;
+}
+
+.map-embed { width: 100%; height: 350px; border-radius: 10px; border: none; box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1); }
+
+/* CTA */
+.cta-strip {
+background: linear-gradient(135deg, var(--paprika) 0%, #861E11 100%);
+padding: 50px 5%;
+text-align: center;
+color: var(--white);
+}
+
+.cta-strip h2 { margin-bottom: 1.5rem; color: var(--white); }
+
+/* FOOTER */
+footer {
+background: var(--charcoal);
+padding: 3rem 5%;
+text-align: center;
+color: rgba(255, 255, 255, 0.6);
+border-top: 1px solid rgba(201, 148, 58, 0.2);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+.hamburger { display: flex; }
+.nav-links { display: none; }
+.nav-links.active { display: flex; flex-direction: column; position: absolute; top: var(--nav-h); left: 0; width: 100%; background: rgba(28, 20, 16, 0.98); }
+.nav-cta { display: none; }
+#hero { grid-template-columns: 1fr; }
+.hero-images { height: 50vw; min-height: 260px; }
+.hero-img-main { width: 85%; border-radius: 10px; }
+.reviews-grid, .amenities-grid { grid-template-columns: 1fr; }
+.gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+}
+
+@media (max-width: 600px) {
+section { padding: 50px 4%; }
+.amenities-grid { grid-template-columns: 1fr; }
+nav { padding: 0 4%; }
+}
+</style>
+</head>
+<body>
+
+<nav role="navigation">
+<a class="nav-logo" href="#hero">Hotel Paprikas</a>
+<button class="hamburger" id="hamburger" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+<ul class="nav-links" id="nav-menu">
+<li><a href="#about">About</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#amenities">Amenities</a></li>
+<li><a href="#location">Location</a></li>
+</ul>
+<a class="nav-cta" href="tel:+919876543210">📞 Call Now</a>
+</nav>
+
+<section id="hero">
+<div class="hero-text">
+<h1 class="hero-title">Taste. <em>Rest.</em> Remember.</h1>
+<p class="hero-subtitle">Hotel Paprikas blends warm hospitality with exceptional food in the heart of Hanamkonda.</p>
+<div class="hero-actions">
+<a class="btn-primary" href="#location">Find Us</a>
+<a class="btn-outline" href="#reviews">Read Reviews</a>
+</div>
+</div>
+<div class="hero-images">
+<img class="hero-img-main" src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF-nPCdRI6dNLDYFbRMXBucl3qdViWHhJ-DoLBffryMHeCCdbElGPPa3X2cOvtVGzt8WyKgnWY7896moZt1tj_VZwNH_kocRPW_slQ7Cx7m6eEDHauc4zmUuQJLLh2At6_GkvQuZJSHm_uU=s294-w294-h220-n-k-no" alt="Hotel interior" loading="lazy" width="294" height="220"/>
+</div>
+</section>
+
+<section id="about">
+<h2>A Place You'll Come Back To</h2>
+<p>Reopened with brand new ambience, warm atmosphere, and exceptional food. Located on Hunter Road, Shyampet.</p>
+</section>
+
+<section id="gallery">
+<h2>See It for Yourself</h2>
+<div class="gallery-grid">
+<div class="gallery-item"><img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF-nPCdRI6dNLDYFbRMXBucl3qdViWHhJ-DoLBffryMHeCCdbElGPPa3X2cOvtVGzt8WyKgnWY7896moZt1tj_VZwNH_kocRPW_slQ7Cx7m6eEDHauc4zmUuQJLLh2At6_GkvQuZJSHm_uU=s294-w294-h220-n-k-no" alt="Hotel view" loading="lazy"/></div>
+<div class="gallery-item"><img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF2OnVZn50a7K1_ZipC0pI9jGIf4If5c-W7xvQCWtHRKAwmsmnaPib0suA7_tQOYoW1equKZrZjtoYFho4CqtfHArqLa8iCeediAWyxQHKbaqOfpABizP9C3-14GkA_CD0eZBXcYeAAT6E=s220-w165-h220-n-k-no" alt="Food" loading="lazy"/></div>
+<div class="gallery-item"><img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGHYURI0SrgskKyvCZuWRm4Sp3DSlSffdNSfEXyPr-PV5x3YWAP4VmTXN2zPR_0gFPLNZ7DIwXEkqhxDgl7jdWMSlaM1aDnfI1S98rvT6O0tLNyr-S8XQSAngq_TFXE-GG-q1i9rQG1l00Y=s294-w294-h220-n-k-no" alt="Dining" loading="lazy"/></div>
+<div class="gallery-item"><img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF2OnVZn50a7K1_ZipC0pI9jGIf4If5c-W7xvQCWtHRKAwmsmnaPib0suA7_tQOYoW1equKZrZjtoYFho4CqtfHArqLa8iCeediAWyxQHKbaqOfpABizP9C3-14GkA_CD0eZBXcYeAAT6E=s220-w165-h220-n-k-no" alt="Menu" loading="lazy"/></div>
+</div>
+</section>
+
+<section id="reviews">
+<h2>What People Say</h2>
+<div class="reviews-grid">
+<div class="review-card"><p>⭐⭐⭐⭐⭐ "Atmosphere good, food tasty, staff helpful!"</p></div>
+<div class="review-card"><p>⭐⭐⭐⭐⭐ "Good service, clean, comfortable. Highly recommended!"</p></div>
+<div class="review-card"><p>⭐⭐⭐⭐⭐ "New ambience, fresh spaces, fantastic!"</p></div>
+</div>
+</section>
+
+<section id="amenities">
+<h2>Facilities</h2>
+<div class="amenities-grid">
+<div class="amenity-card"><div>🍛</div><h3>Restaurant</h3><p>Fresh meals daily</p></div>
+<div class="amenity-card"><div>🛏️</div><h3>Rooms</h3><p>Comfortable stays</p></div>
+<div class="amenity-card"><div>📶</div><h3>Wi-Fi</h3><p>Stay connected</p></div>
+<div class="amenity-card"><div>✨</div><h3>New Look</h3><p>Modern ambience</p></div>
+</div>
+</section>
+
+<div class="cta-strip">
+<h2>Ready to Visit?</h2>
+<a class="btn-primary" href="tel:+919876543210">📞 Call Now</a>
+</div>
+
+<section id="location">
+<h2>Find Us</h2>
+<div class="location-grid">
+<iframe class="map-embed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3796.2!2d79.5941!3d18.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a334538f5c4af83%3A0x34de25f6e79a1060!2sHotel%20Paprikas!5e0!3m2!1sen!2sin!4v1" allowfullscreen="" loading="lazy"></iframe>
+<div>
+<h3>Address</h3>
+<p>Hunter Road, Shyampet, Hanamkonda, Telangana 506001</p>
+<h3>Rating</h3>
+<p>4.9 / 5 (31 Reviews)</p>
+<a href="https://maps.google.com/?q=Hotel+Paprikas" target="_blank" rel="noopener">Open in Google Maps →</a>
+</div>
+</div>
+</section>
+
+<footer>
+<p>&copy; 2026 Hotel Paprikas. All Rights Reserved.</p>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+hamburger.addEventListener('click', () => {
+navMenu.classList.toggle('active');
+});
+document.querySelectorAll('#nav-menu a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('active')));
+</script>
+
+</body>
+</html>
